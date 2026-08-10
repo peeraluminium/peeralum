@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-dark: #1C3263;
+  --color-primary: #243F7A;
+  --color-primary-light: #2D4B91;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-dark: #AA8C2C;
+  --font-sans: "Secular One", system-ui, -apple-system, sans-serif;
+  --font-heading: "Secular One", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    direction: rtl;
+  }
+  body {
+    @apply bg-primary-dark text-white font-sans antialiased overflow-x-hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button, a {
+    touch-action: manipulation;
+  }
+  
+  /* Make all interactable elements snap quickly on mobile tap */
+  @media (max-width: 768px) {
+    button, a, .group {
+      transition-duration: 75ms !important;
+    }
+    button:active, a:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+
+
+@layer utilities {
+  /* Hardware acceleration for mobile performance */
+  img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .glass {
+    @apply bg-white/5 border border-white/10;
+  }
+  .glass-dark {
+    @apply bg-primary-dark/95 border border-gold/40;
+  }
+  .glass-gold {
+    @apply bg-gold/10 border border-gold/30;
+  }
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-[#D4AF37];
+  }
+  .gold-glow {
+    box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.4);
+  }
+  .gold-glow-hover:hover {
+    box-shadow: 0 15px 30px -5px rgba(212, 175, 55, 0.6);
+  }
+  .bg-grid-white {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  }
+}
+
+/* Accessibility Modes */
+.high-contrast {
+  --color-primary-dark: #000000;
+  --color-primary: #000000;
+  --color-gold: #ffff00;
+  --color-gold-dark: #ffff00;
+  --color-white: #ffffff;
+}
+
+.high-contrast * {
+  border-color: #ffff00 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast button, 
+.high-contrast a,
+.high-contrast select,
+.high-contrast input {
+  background-color: #000000 !important;
+  border: 2px solid #ffff00 !important;
+  color: #ffff00 !important;
+}
+
+.grayscale-mode {
+  filter: grayscale(100%) !important;
+}
+
+.highlight-links a {
+  text-decoration: underline !important;
+  outline: 2px solid #ffff00 !important;
+  background-color: rgba(0,0,0,0.8) !important;
+  color: #ffff00 !important;
+}
+
+.readable-font {
+  font-family: Arial, sans-serif !important;
+}
+
+.readable-font * {
+  font-family: Arial, sans-serif !important;
+}
